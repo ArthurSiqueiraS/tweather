@@ -5,10 +5,16 @@ class Tweather
 
       return unless tweet_text.present?
 
-      {
-        tweet_url: 'https://twitter.com/tweatherapi/status/1332854276633354240',
-        tweet_text: tweet_text
-      }
+      twitter = Twitter::REST::Client.new do |config|
+        config.consumer_key    = Rails.application.credentials.twitter[:key]
+        config.consumer_secret = Rails.application.credentials.twitter[:secret_key]
+        config.access_token = Rails.application.credentials.twitter[:access_token]
+        config.access_token_secret = Rails.application.credentials.twitter[:access_token_secret]
+      end
+
+      tweet = twitter.update(tweet_text)
+
+      { tweet_url: tweet.url.to_s, tweet_text: tweet.text }
     end
 
     private
