@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ArthurSiqueiraS/open-weather
-  revision: dc7e52050eb0f0a3f88aa7cffec644bbb1b16e2b
+  revision: 8bdffd38c47916b787830907a023aafd6a1ab652
   specs:
     open_weather (0.0.0)
 

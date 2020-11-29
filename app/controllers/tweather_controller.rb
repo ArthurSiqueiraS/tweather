@@ -7,7 +7,7 @@ class TweatherController < ApplicationController
       return render_bad_request
     end
 
-    response = Tweather.send_tweet(city_id)
+    response = Tweather.new.create_tweet(city_id)
     return render_not_found(city_id) unless response.present?
 
     render json: response, status: :created
