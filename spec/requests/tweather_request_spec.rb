@@ -22,7 +22,7 @@ RSpec.describe "Tweather", type: :request do
   end
 
   context 'post weather tweet request with valid params' do
-    before do
+    before(:all) do
       tweet(city_id)
     end
 
@@ -35,7 +35,7 @@ RSpec.describe "Tweather", type: :request do
 
       expect(data).to_not be_nil
       expect(data['tweet_url']).to_not be_nil
-      expect(data['text']).to_not be_nil
+      expect(data['tweet_text']).to_not be_nil
     end
 
     it 'response has valid tweet url' do
@@ -44,7 +44,7 @@ RSpec.describe "Tweather", type: :request do
     end
 
     it 'response text shows 6 temperatures' do
-      temp_occurences = response.parsed_body['text'].scan(/°C/)
+      temp_occurences = response.parsed_body['tweet_text'].scan(/°C/)
       expect(temp_occurences.count).to eq(6)
     end
   end
